@@ -33,7 +33,7 @@ function StatSection() {
       <div>
         <div className="container mx-auto flex items-center justify-between flex-wrap px-2">
           <div className="py-2">
-            <img src="public/images/blood_orange.png" alt="" />
+            <img src="/images/blood_orange.png" alt="" />
           </div>
           <div className="md:w-1/2">
             <h1 className="text-3xl font-bold font-mono">
