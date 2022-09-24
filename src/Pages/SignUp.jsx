@@ -96,11 +96,6 @@ function SignUp() {
       {isLoading ? (
         <section>
           <h1>Success !</h1>
-          <p>
-            <Link to="sign-in">
-              <button>Sign In</button>
-            </Link>
-          </p>
         </section>
       ) : (
         <div className="bg-grey-lighter min-h-screen flex flex-col">
