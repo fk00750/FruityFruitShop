@@ -4,6 +4,7 @@ import useAuth from "./useAuth";
 export const useSignup = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
+  const [success, setSuccess] = useState(false)
 
   const { dispatch } = useAuth();
 
@@ -23,6 +24,7 @@ export const useSignup = () => {
     if (!response.ok) {
       isLoading(false);
       setError(json.error);
+      setSuccess(true)
     }
 
     if (response.ok) {
@@ -35,5 +37,5 @@ export const useSignup = () => {
     }
   };
 
-  return { signup, isLoading, error };
+  return { signup, isLoading, error,success };
 };

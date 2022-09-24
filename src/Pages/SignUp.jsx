@@ -30,10 +30,10 @@ function SignUp() {
 
   // error
   const [errMsg, setErrorMsg] = useState("");
-  const [success, setSuccess] = useState("");
+  // const [success, setSuccess] = useState("");
 
   // context
-  const { signup, error, isLoading } = useSignup();
+  const { signup, error, isLoading} = useSignup();
 
   // user
   useEffect(() => {
@@ -80,7 +80,6 @@ function SignUp() {
 
     try {
       await signup(userDetails);
-      setSuccess(true);
     } catch (error) {
       if (error?.response) {
         setErrorMsg("No server Response");
@@ -94,7 +93,7 @@ function SignUp() {
 
   return (
     <div>
-      {success ? (
+      {isLoading ? (
         <section>
           <h1>Success !</h1>
           <p>
