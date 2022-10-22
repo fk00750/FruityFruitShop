@@ -49,6 +49,7 @@ function MapBox() {
         setIsDataLoading(true);
       }
     };
+    // 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
 
     fetchFruitsDATA();
   }, []);
@@ -71,7 +72,7 @@ function MapBox() {
             }}
           >
             <img
-              src={`src/Map/images/Fruit_${farm.properties.name}_Logo.png`}
+              src={`./src/Map/images/Fruit_${farm.properties.name}_Logo.png`}
               className="w-12"
               alt=""
             />

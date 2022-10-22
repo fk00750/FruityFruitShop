@@ -16,13 +16,6 @@ function Navigation() {
   const { login, isLogin } = useContext(AuthContext);
   const { logout } = useLogout();
 
-  // cart style
-  const cartStyle = {
-    background: "red",
-    display: "flex",
-    padding: "6px 12px",
-    borderRadius: "50px",
-  };
 
   const buttonStyle = {
     fontSize: "15px",
@@ -31,9 +24,6 @@ function Navigation() {
     borderBottomLeftRadius: "35px",
     textShadow: "1px 1px 0px #2f6627",
   };
-
-  // cart context
-  // const { cart } = useContext(CartContext);
 
   const handleClick = () => {
     logout();
