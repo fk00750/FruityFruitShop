@@ -1,8 +1,6 @@
 import { useRef, useState, useCallback, useMemo } from "react";
 import Map, { Marker, Popup } from "react-map-gl";
 import SideBar from "./SideBar";
-// import "./images/index";
-// import {"./src/Map/images/fruit_Apple_Logo.png" as Apple}
 
 import { GiFruitBowl, BiPhoneCall } from "../Collection/ReactIconsCollection";
 import { useEffect } from "react";
@@ -53,7 +51,6 @@ function MapBox() {
         setIsDataLoading(true);
       }
     };
-    // https://fruity-fruit-shop.vercel.app/
 
     fetchFruitsDATA();
   }, []);
@@ -75,8 +72,6 @@ function MapBox() {
     if (!FruitFarms && isDataLoading) return;
     else if (FruitFarms && isDataLoading)
       return FruitFarms.fruitFarm.map((farm, index) => {
-        console.log(farm.properties.name);
-        console.log(AllFruits[farm.properties.name]);
         return (
           <Marker
             key={`marker-${index}`}
