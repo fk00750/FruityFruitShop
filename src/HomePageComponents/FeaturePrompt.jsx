@@ -1,12 +1,6 @@
 import React from "react";
 
 function FeaturePrompt() {
-  const numberStyle = {
-    borderRadius: "50%",
-    height: "35px",
-    width: "35px",
-  };
-  
   return (
     <div>
       <div className="container mx-auto flex items-center justify-betarween xl:justify-around space-y-4 flex-wrap px-2 py-10">
@@ -21,10 +15,7 @@ function FeaturePrompt() {
         </div>
         <div>
           <div className="flex space-x-4 space-y-2 py-4">
-            <div
-              style={numberStyle}
-              className="border text-center px-2 py-2 font-bold text-green-600 shadow-xl shadow-gray-400"
-            >
+            <div className="numbers_style border text-center px-2 py-2 font-bold text-green-600 shadow-xl shadow-gray-400">
               1
             </div>
             <div className="flex flex-col">
@@ -33,10 +24,7 @@ function FeaturePrompt() {
             </div>
           </div>
           <div className="flex space-x-4 space-y-2">
-            <div
-              style={numberStyle}
-              className="border text-center px-2 py-2 font-bold text-green-600 shadow-xl shadow-gray-400"
-            >
+            <div className="numbers_style border text-center px-2 py-2 font-bold text-green-600 shadow-xl shadow-gray-400">
               2
             </div>
             <div className="flex flex-col">

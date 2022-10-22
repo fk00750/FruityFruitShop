@@ -1,77 +1,54 @@
 import React from "react";
-import { useContext } from "react";
-import CartContext from "../../CartContext";
+import { AiFillDelete } from "../Collection/ReactIconsCollection";
 
-function CartProduct(props) {
-  const { product, getQty, increment, decrement, handleDelete, total, getSum } =
-    props;
-
+function CartProduct({ fruit, dispatch, getEachFruitTotalPrice }) {
   return (
-    <div className="flex justify-between ">
-      {/* Product details  */}
-      <div className="px-4 py-4 w-54 mt-5">
-        <h3 className="font-semibold text-gray-600 text-xs uppercase text-center mb-6 ">
-          Product Details
-        </h3>
-        <div className="flex">
-          <div className="w-20">
-            <img className="h-24" src={product.image} alt="" />
-          </div>
-          <div className="flex flex-col justify-between ml-4">
-            <span className="font-semibold text-sm w-20">
-              {product.cultivar}
-            </span>
-            <span className="text-red-500 ">{product.name}</span>
-            <button
-              onClick={() => handleDelete(product._id)}
-              className="font-semibold text-xs text-gray-500  w-fit"
-            >
-              Remove
-            </button>
-          </div>
-        </div>
+    <div className="">
+      <div className="w-fit mx-4 my-2">
+        <AiFillDelete
+          fontSize="24px"
+          cursor="pointer"
+          onClick={() => {
+            dispatch({
+              type: "REMOVE_FROM_CART",
+              payload: fruit,
+            });
+          }}
+        />
       </div>
-      {/* --- End ---  */}
-      {/* Quantity  */}
-      <div className="px-4 py-4 w-fit mt-5 flex flex-col items-center">
-        <h3 className="font-semibold text-gray-600 text-xs uppercase text-center mb-6">
-          Quantity
-        </h3>
-        <div className=" px-4 py-4 flex">
-          <div className="mx-2 ">
-            <button onClick={() => decrement(product._id)}>-</button>
-          </div>
-          <b className="mx-2 border border-gray-400 w-8 text-center">
-            {getQty(product._id)}
-          </b>
-          <div className="mx-2">
-            <button onClick={() => increment(product._id)}>+</button>
-          </div>
+      <div className="flex  items-center justify-evenly border border-r-0 border-t-0 border-l-0 border-gray-400 py-2 mx-2">
+        <div className="w-20 xl:w-32">
+          <img src={fruit.image} alt="" />
         </div>
-      </div>
-      {/* --- End ---  */}
-      {/* Price  */}
-      <div className="px-4 py-4 w-fit mt-5 flex flex-col items-center ">
-        <h3 className="font-semibold text-gray-600 text-xs uppercase text-center mb-6">
-          Price
-        </h3>
-        <div className="px-4 py-4 flex">
-          <span className="font-semibold w-5 text-center">{product.price}</span>
-        </div>
-      </div>
-      {/* --- End ---  */}
-      {/* Total Price  */}
-      <div className="px-4 py-4 w-fit mt-5 flex flex-col items-center">
-        <h3 className="font-semibold text-gray-600 text-xs uppercase text-center mb-6">
-          Total Price
-        </h3>
-        <div className="px-4 py-4 flex">
-          <span className="font-semibold">
-            $ {getSum(product._id, product.price)}
+        <div className="font-medium w-1/4 xl:text-lg">
+          <span>
+            {fruit.variety.replace(/(^\w{1})|(\s+\w{1})/g, (letter) =>
+              letter.toUpperCase()
+            )}
           </span>
         </div>
+        <div className="text- ">
+          <select
+            className="border border-gray-400 rounded-md py-2 "
+            value={fruit.qty}
+            onChange={(e) => {
+              dispatch({
+                type: "CHANGE_CART_QTY",
+                payload: {
+                  _id: fruit._id,
+                  qty: e.target.value,
+                },
+              });
+            }}
+          >
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+        </div>
+        <span className="xl:text-xl">₹ {getEachFruitTotalPrice(fruit)}</span>
       </div>
-      {/* --- End ---  */}
     </div>
   );
 }

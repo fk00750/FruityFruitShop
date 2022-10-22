@@ -3,7 +3,7 @@ import React from "react";
 function Newsletter() {
   return (
     <div>
-      <div className="shadow-xl rounded-lg border p-6 container  xl:w-auto mx-auto flex flex-col md:flex-row  xl:items-stretch justify-between xl:flex-row ">
+      <div className="shadow-sm rounded-lg border p-6 container  xl:w-auto mx-auto flex flex-col md:flex-row  xl:items-stretch justify-between xl:flex-row ">
         <div className="xl:w-1/2 md:mb-14 xl:mb-0 relative h-auto flex items-center justify-center">
           <img
             src="/images/leechiView.png"

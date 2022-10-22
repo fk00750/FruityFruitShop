@@ -19,7 +19,7 @@ function User() {
   }, []);
 
   return (
-    <div>
+    <div className="bg-gray-50">
       {role === 'admin' ? (
         <Admin name={name} userEmail={userEmail} role={role} />
       ) : (

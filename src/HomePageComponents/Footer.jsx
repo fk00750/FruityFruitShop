@@ -3,10 +3,9 @@ import React from "react";
 function Footer() {
   return (
     <div>
-      {" "}
-      <footer className="p-4 bg-white sm:p-6 ">
+      <footer className="p-4  sm:p-6 ">
         <div className="md:flex md:justify-between">
-          <div className="mb-6 md:mb-0 flex items-center">
+          <div className="mb-6 md:mb-0 flex items-center xl:w-1/3 xl:justify-center">
             <img
               src="/images/freshfruit_logo.png"
               alt=""
@@ -16,14 +15,14 @@ function Footer() {
               Fruity
             </span>
           </div>
-          <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+          <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3 xl:w-2/3">
             <div>
               <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase">
                 Resources
               </h2>
               <ul className="text-gray-600">
                 <li className="mb-4">Fruity</li>
-                <li className="mb-4">Tailwind CSS</li>
+                <li className="mb-4">Fruit Farm</li>
               </ul>
             </div>
             <div>
@@ -32,7 +31,7 @@ function Footer() {
               </h2>
               <ul className="text-gray-600">
                 <li className="mb-4">Github</li>
-                <li className="mb-4">Discord</li>
+                <li className="mb-4">Twitter</li>
               </ul>
             </div>
             <div>
@@ -41,7 +40,7 @@ function Footer() {
               </h2>
               <ul className="text-gray-600">
                 <li className="mb-4">Privacy Policy</li>
-                <li className="mb-4">Terms &amp; Conditons CSS</li>
+                <li className="mb-4">Terms &amp; Conditons </li>
               </ul>
             </div>
           </div>

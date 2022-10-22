@@ -25,6 +25,7 @@ export const AuthProvider = ({ children }) => {
     const refreshToken = JSON.parse(localStorage.getItem("token"));
 
     if (refreshToken) {
+      isLogin(true)
       dispatch({ type: "LOGIN", payload: refreshToken });
     }
   }, []);

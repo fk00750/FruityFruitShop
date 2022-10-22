@@ -1,46 +1,36 @@
-import React from "react";
-import { useRef } from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useRef, useState, useCallback, useMemo } from "react";
 import Map, { Marker, Popup } from "react-map-gl";
 import SideBar from "./SideBar";
-import { AllStores } from "./AllStore";
-import { useCallback } from "react";
-import { useMemo } from "react";
 
-import { GiFruitBowl, GiHamburgerMenu } from "react-icons/gi";
-import { BiPhoneCall } from "react-icons/bi";
-
+import { GiFruitBowl, BiPhoneCall } from "../Collection/ReactIconsCollection";
+import { useEffect } from "react";
 
 function MapBox() {
   const accessToken =
     "pk.eyJ1IjoiY293YWZvajg1MCIsImEiOiJjbDhqbmw5N2oxM2hvNDFtanN2eWprbTN3In0.YqFF95gOPUaMR1L206GTaA";
 
+  // latitude & langitude
   const [lat, setLat] = useState(20.5937);
   const [lng, setLng] = useState(78.9629);
-  const [zoom, setZoom] = useState(4);
-  const [showPopup, setShowPopup] = useState(false);
+  // Zoom level of map
+  const [zoom, setZoom] = useState(3);
+
+  // stores the popup window information
   const [popupInfo, setPopupInfo] = useState(null);
+
   const mapRef = useRef(Map);
+  const [FruitFarms, setFruitFarms] = useState([]);
+  const [isDataLoading, setIsDataLoading] = useState(false);
 
-  const geoJson = AllStores;
-
-  const layerStyle = {
-    id: "locations",
-    type: "circle",
-    paint: {
-      "circle-radius": 10,
-      "circle-color": "#007cbf",
-    },
-  };
-
+  // initial Map State
   const initialViewState = {
     latitude: lat,
     longitude: lng,
     zoom: zoom,
   };
 
-  const flyToStore = useCallback((coordinates) => {
+  // fly to fruit farm on click
+  const flyToFarm = useCallback((coordinates) => {
     mapRef.current.flyTo({
       center: coordinates,
       zoom: 8,
@@ -48,41 +38,58 @@ function MapBox() {
     });
   }, []);
 
+  // fetches the data
+  useEffect(() => {
+    const fetchFruitsDATA = async function () {
+      const response = await fetch("http://localhost:3000/api/fruitfarm");
+      const data = await response.json();
+
+      if (response.ok) {
+        setFruitFarms(data);
+        setIsDataLoading(true);
+      }
+    };
+
+    fetchFruitsDATA();
+  }, []);
+
   // marker and popup
   const pins = useMemo(() => {
-    return AllStores.features.map((store, index) => {
-      return (
-        <Marker
-          key={`marker-${index}`}
-          longitude={store.geometry.coordinates[0]}
-          latitude={store.geometry.coordinates[1]}
-          anchor="bottom"
-          onClick={(e) => {
-            e.originalEvent.stopPropagation();
-            setPopupInfo(store);
-            flyToStore(store.geometry.coordinates);
-          }}
-        >
-          <img
-            src={`src/Map/images/Fruit_${store.properties.item}_Logo.png`}
-            className="w-12"
-            alt=""
-          />
-        </Marker>
-      );
-    });
-  }, []);
+    if (!FruitFarms && isDataLoading) return;
+    else if (FruitFarms && isDataLoading)
+      return FruitFarms.fruitFarm.map((farm, index) => {
+        return (
+          <Marker
+            key={`marker-${index}`}
+            longitude={farm.geometry.coordinates[0]}
+            latitude={farm.geometry.coordinates[1]}
+            anchor="bottom"
+            onClick={(e) => {
+              e.originalEvent.stopPropagation();
+              setPopupInfo(farm);
+              flyToFarm(farm.geometry.coordinates);
+            }}
+          >
+            <img
+              src={`src/Map/images/Fruit_${farm.properties.name}_Logo.png`}
+              className="w-12"
+              alt=""
+            />
+          </Marker>
+        );
+      });
+  }, [isDataLoading]);
 
   return (
     <>
       <Map
         ref={mapRef}
         initialViewState={initialViewState}
-        style={{ width: "100%", height: "100vh" }}
+        style={{ width: "100%", height: "100vh", overflow: "hidden" }}
         mapStyle="mapbox://styles/mapbox/streets-v9"
         mapboxAccessToken={accessToken}
       >
-        {pins}
+        {isDataLoading && pins}
         {popupInfo && (
           <Popup
             anchor="top"
@@ -93,20 +100,25 @@ function MapBox() {
             <div className="">
               <div className="px-2 py-2 rounded-md space-y-2">
                 <div className="flex space-x-2">
-                  <GiFruitBowl className="h-4"/>
-                  <span className="text-base">{popupInfo.properties.item}</span>
+                  <GiFruitBowl className="h-4" />
+                  <span className="text-base">{popupInfo.properties.name}</span>
                 </div>
                 <div className="bg-green-400 px-2 rounded-md border border-black flex space-x-2 justify-center">
-                  <BiPhoneCall className="h-6"/>
-                  <button className="text-base" value={popupInfo.properties.phone}>Call</button>
+                  <BiPhoneCall className="h-6" />
+                  <button
+                    className="text-base"
+                    value={popupInfo.properties.phone}
+                  >
+                    Call
+                  </button>
                 </div>
               </div>
             </div>
           </Popup>
         )}
         <SideBar
-          stores={geoJson.features}
-          flyToStore={flyToStore}
+          fruitFarm={FruitFarms.fruitFarm}
+          flyToFarm={flyToFarm}
           setPopupInfo={setPopupInfo}
         />
       </Map>

@@ -33,7 +33,7 @@ function SignUp() {
   // const [success, setSuccess] = useState("");
 
   // context
-  const { signup, error, isLoading} = useSignup();
+  const { signup, error, isLoading } = useSignup();
 
   // user
   useEffect(() => {
@@ -189,11 +189,13 @@ function SignUp() {
               </div>
             </div>
 
-            <div className="text-grey-dark mt-6">
+            <div className="text-grey-dark mt-6 ">
               Already have an account?
-              <button className="no-underline border-b hover:border-blue-500 text-blue">
-                Log in
-              </button>
+              <Link to='/sign-in'>
+                <button className="text-blue-400 mx-2 no-underline border-b hover:border-blue-500 text-blue">
+                  Log in
+                </button>
+              </Link>
               .
             </div>
           </div>

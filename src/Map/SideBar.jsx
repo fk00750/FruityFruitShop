@@ -2,59 +2,66 @@ import React from "react";
 import { useState } from "react";
 import {
   GiThreeLeaves,
-  GiFruitTree,
   GiFruitBowl,
   GiHorizonRoad,
-  GiHamburgerMenu,
-} from "react-icons/gi";
+  MdOutlineClose,
+  FaLocationArrow,
+  FaCity,
+} from "../Collection/ReactIconsCollection";
 
-import {
-  MdOutlineClose
-} from 'react-icons/md'
-
-function SideBar({ stores, flyToStore, setPopupInfo }) {
-  let [isSideBarVisible , setIsSideBarVisible] = useState(false)
+function SideBar({ fruitFarm, flyToFarm, setPopupInfo }) {
+  let [isSideBarVisible, setIsSideBarVisible] = useState(false);
 
   const handleClick = (store) => {
-    flyToStore(store.geometry.coordinates);
+    flyToFarm(store.geometry.coordinates);
     setPopupInfo(store);
-    setIsSideBarVisible(false)
+    setIsSideBarVisible(false);
   };
 
-
   return !isSideBarVisible ? (
-    <GiHamburgerMenu className="absolute top-5 left-5 border border-black w-8 h-8" onClick={() => {
-      setIsSideBarVisible(true)
-    }}/>
+    <FaLocationArrow
+      className="absolute top-10 xl:top-16  left-5 hover:rotate-45 active:rotate-45 w-8 h-8"
+      onClick={() => {
+        setIsSideBarVisible(true);
+      }}
+    />
   ) : (
-    <div className="absolute w-full lg:w-1/4 bg-white h-full top-0 left-0 overflow-hidden border border-r-gray-400">
-      <MdOutlineClose className="absolute right-2 top-2 w-8 h-8" onClick={() => {
-        setIsSideBarVisible(false)
-      }}/>
+    <div className="absolute w-full lg:w-1/4 bg-gray-50 h-full top-0 left-0 overflow-auto border border-r-gray-400">
+      <MdOutlineClose
+        className="absolute right-2 top-2 w-8 h-8"
+        onClick={() => {
+          setIsSideBarVisible(false);
+        }}
+      />
       <div className="heading">
-        <h1 className="text-2xl p-4 ">
+        <h1 className="text-2xl p-4 font-serif">
           <GiThreeLeaves /> Your Fruits Location
         </h1>
       </div>
       <div id="listing">
-        {stores.map((store, index) => {
+        {fruitFarm.map((farm, index) => {
           return (
-            <div className="flex mx-2 my-4 border border-black px-2 py-2 space-x-4" key={index}>
-              <div className="border border-black w-24 h-24"></div>
+            <div
+              className="rounded-md shadow-lg  justify-center mx-6 my-4 pl-2 py-2 space-x-4  bg-[url('src/Map/images/BgFruitSets.png')] bg-no-repeat bg-center bg-cover pt-16 pb-16"
+              key={index}
+            >
               <div>
-                <h1
-                  className="text-2xl cursor-pointer"
-                  onClick={() => handleClick(store)}
-                >
-                  {store.properties.city}
-                </h1>
-                <div>
-                  <GiFruitBowl />
-                  <span>{store.properties.item}</span>
+                <div className="flex items-center space-x-2">
+                  <FaCity fontSize="24px" />
+                  <h1
+                    className="text-2xl xl:text-3xl cursor-pointer"
+                    onClick={() => handleClick(farm)}
+                  >
+                    {farm.properties.city}
+                  </h1>
                 </div>
-                <div>
-                  <GiHorizonRoad />
-                  <span>{store.properties.address}</span>
+                <div className="flex items-center space-x-2">
+                  <GiFruitBowl fontSize="24px" />
+                  <span className="text-xl">{farm.properties.name}</span>
+                </div>
+                <div className="flex  items-center space-x-2">
+                  <GiHorizonRoad fontSize="24px" />
+                  <span className="text-xl">{farm.properties.address}</span>
                 </div>
               </div>
             </div>
