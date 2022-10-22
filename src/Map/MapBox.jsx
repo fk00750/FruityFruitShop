@@ -72,7 +72,7 @@ function MapBox() {
             }}
           >
             <img
-              src={`./src/Map/images/Fruit_${farm.properties.name}_Logo.png`}
+              src={`./public/images/Fruit_${farm.properties.name}_Logo.png`}
               className="w-12"
               alt=""
             />
