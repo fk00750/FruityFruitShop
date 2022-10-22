@@ -41,7 +41,7 @@ function MapBox() {
   // fetches the data
   useEffect(() => {
     const fetchFruitsDATA = async function () {
-      const response = await fetch("http://localhost:3000/api/fruitfarm");
+      const response = await fetch("https://fruity-fruit-shop.herokuapp.com/api/fruitfarm");
       const data = await response.json();
 
       if (response.ok) {

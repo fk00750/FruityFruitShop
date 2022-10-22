@@ -18,9 +18,6 @@ function Fruits() {
       const response = await fetch(
         "https://fruity-fruit-shop.herokuapp.com/api/product"
       );
-      // const response = await fetch(
-      //   "https://fruit-shop-api-22.herokuapp.com/api/product"
-      // );
       const data = await response.json();
 
       if (response.ok) {

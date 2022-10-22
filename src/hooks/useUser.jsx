@@ -9,7 +9,7 @@ export const useUser = () => {
   const [role, setRole] = useState("customer");
 
   const getUserDetails = async (access_token) => {
-    const UserResponse = await fetch("http://localhost:3000/api/me", {
+    const UserResponse = await fetch("https://fruity-fruit-shop.herokuapp.com/api/me", {
       method: "POST",
       headers: { Authorization: `Bearer ${access_token}` },
     });
@@ -31,7 +31,7 @@ export const useUser = () => {
       refresh_token: refreshToken,
     };
 
-    const response = await fetch("http://localhost:3000/api/refresh", {
+    const response = await fetch("https://fruity-fruit-shop.herokuapp.com/api/refresh", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(token),
