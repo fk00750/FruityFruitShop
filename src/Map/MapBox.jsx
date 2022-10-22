@@ -49,7 +49,7 @@ function MapBox() {
         setIsDataLoading(true);
       }
     };
-    // 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
+    
 
     fetchFruitsDATA();
   }, []);
