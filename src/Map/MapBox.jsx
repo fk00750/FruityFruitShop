@@ -49,7 +49,7 @@ function MapBox() {
         setIsDataLoading(true);
       }
     };
-    
+    // https://fruity-fruit-shop.vercel.app/
 
     fetchFruitsDATA();
   }, []);
@@ -72,7 +72,7 @@ function MapBox() {
             }}
           >
             <img
-              src={`./public/images/Fruit_${farm.properties.name}_Logo.png`}
+              src={`./public/images/fruit_${farm.properties.name}_Logo.png`}
               className="w-12"
               alt=""
             />
