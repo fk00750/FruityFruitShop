@@ -1,6 +1,8 @@
 import { useRef, useState, useCallback, useMemo } from "react";
 import Map, { Marker, Popup } from "react-map-gl";
 import SideBar from "./SideBar";
+// import "./images/index";
+// import {"./src/Map/images/fruit_Apple_Logo.png" as Apple}
 
 import { GiFruitBowl, BiPhoneCall } from "../Collection/ReactIconsCollection";
 import { useEffect } from "react";
@@ -41,7 +43,9 @@ function MapBox() {
   // fetches the data
   useEffect(() => {
     const fetchFruitsDATA = async function () {
-      const response = await fetch("https://fruity-fruit-shop.herokuapp.com/api/fruitfarm");
+      const response = await fetch(
+        "https://fruity-fruit-shop.herokuapp.com/api/fruitfarm"
+      );
       const data = await response.json();
 
       if (response.ok) {
@@ -54,11 +58,25 @@ function MapBox() {
     fetchFruitsDATA();
   }, []);
 
+
+  const AllFruits = {
+    Apple: "/images/fruit_Apple_Logo.png",
+    Banana: "/images/fruit_Banana_Logo.png",
+    Grape: "/images/fruit_Grape_Logo.png",
+    Guava: "/images/fruit_Guava_Logo.png",
+    Litchi: "/images/fruit_Litchi_Logo.png",
+    Mango: "/images/fruit_Mango_Logo.png",
+    Orange: "/images/fruit_Orange_Logo.png",
+    Pineapple: "/images/fruit_Pineapple_Logo.png",
+  };
+
   // marker and popup
   const pins = useMemo(() => {
     if (!FruitFarms && isDataLoading) return;
     else if (FruitFarms && isDataLoading)
       return FruitFarms.fruitFarm.map((farm, index) => {
+        console.log(farm.properties.name);
+        console.log(AllFruits[farm.properties.name]);
         return (
           <Marker
             key={`marker-${index}`}
@@ -71,11 +89,7 @@ function MapBox() {
               flyToFarm(farm.geometry.coordinates);
             }}
           >
-            <img
-              src={`./public/images/fruit_${farm.properties.name}_Logo.png`}
-              className="w-12"
-              alt=""
-            />
+            <img src={`${AllFruits[farm.properties.name]}`} className="w-12" alt="" />
           </Marker>
         );
       });

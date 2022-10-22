@@ -35,6 +35,7 @@ function Navigation() {
     dispatch,
   } = CartState();
 
+
   return (
     <>
       <nav className="bg-gray-50 border-gray-200 px-2 sm:px-4  pt-5 rounded sticky top-0 z-50">
