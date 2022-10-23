@@ -55,6 +55,12 @@ Clone this repo to your desktop and run `npm install` to install all the depende
 
 ---
 
+## 📬 Have a question? Want to Chat? Ran into a problem?
+
+Please feel free to contact me via my email address ( fk7384329@gmail.com ) or you can also message me directly on [Twitter](https://twitter.com/Fk00750)
+
+---
+
 ## License
 >You can check out the full license [here](https://github.com/fk00750/FruityFruitShop/blob/master/LICENSE)
 
