@@ -13,10 +13,10 @@
 
 ## Fruits Filter
 
-| Image | Filter |
+| Image | ![Filter](https://user-images.githubusercontent.com/94318094/197362699-1f2e9f7c-80f2-4182-80d2-a0b8a9ec385f.png) |
 |---|---|
-| ![Filter](https://user-images.githubusercontent.com/94318094/197362699-1f2e9f7c-80f2-4182-80d2-a0b8a9ec385f.png)| <h3>Sort By Price</h3><ul><li>Ascending - Sort the Fruits from Lower to Higher Price</li><li>Descending - Sort the Fruits from Higher to Lower Price</li></ul><h3>Sort By Location</h3><ul><li>Get Fruits With Locations</li></ul><h3>Others Include</h3><ul type="square"><li>Sort Fruits Rich in VitaminC</li><li>Sort Fruits Rich in VitaminB6</li><li>Sort Fruits Rich in Potassium</li></ul>
-| | |
+| Filters | <h3>Sort By Price</h3><ul><li>Ascending - Sort the Fruits from Lower to Higher Price</li><li>Descending - Sort the Fruits from Higher to Lower Price</li></ul><h3>Sort By Location</h3><ul><li>Get Fruits With Locations</li></ul><h3>Others Include</h3><ul type="square"><li>Sort Fruits Rich in VitaminC</li><li>Sort Fruits Rich in VitaminB6</li><li>Sort Fruits Rich in Potassium</li></ul> |
+
 
 ## User Authentication
 
